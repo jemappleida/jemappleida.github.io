@@ -80,10 +80,17 @@ console.log(foo(5));
 
 ## Tables
 
-| Option | description |
+| Option | Description |
 |--------| ----------- |
 | data | Some data |
 | engineering | This is a sample engineering data |
-| etc | This is etc |
+| etc | This is etc. |
 
+Right aligned columns
+
+| Option | Description |
+|--------:| -----------: |
+| data | Some data |
+| engineering | This is a sample engineering data |
+| etc | This is etc. |
 
