@@ -79,4 +79,11 @@ console.log(foo(5));
 ```
 
 ## Tables
-              
+
+| Option | description |
+|--------| ----------- |
+| data | Some data |
+| engineering | This is a sample engineering data |
+| etc | This is etc |
+
+
