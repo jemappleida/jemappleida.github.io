@@ -36,19 +36,19 @@ _This is italic text_
 
 Unordered
 
-+Create
-+ Sub-L
-   - Mark
-      * A
-      + F
-      - N
-    
++Create a list by starting a line with '+','-', or '*'
++ Sub-Lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:
+      * Ac tristique Libero volutpat at 
+      + Facilisis in pretium nisl aLiquet
+      - Nulla volutpat aliquam velit
++ Very easy !
 
+Ordered
 
-
-
-
-
+1. Loren ipsum dolor sit amet
+2. consectetur adipiscing elit
+3. Integer molestie loren at massa
 
 ## Code
 
