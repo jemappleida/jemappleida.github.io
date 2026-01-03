@@ -82,15 +82,27 @@ console.log(foo(5));
 
 | Option | Description |
 |--------| ----------- |
-| data | Some data |
-| engineering | This is a sample engineering data |
+| data | Some data. |
+| engineering | This is a sample engineering data. |
 | etc | This is etc. |
 
 Right aligned columns
 
 | Option | Description |
 |--------:| -----------: |
-| data | Some data |
-| engineering | This is a sample engineering data |
+| data | Some data. |
+| engineering | This is a sample engineering data. |
 | etc | This is etc. |
 
+
+## Links
+
+[Link text](http://dev.nodeca.com)
+
+[Link with title](http://nodeca.github.io/pica/demo/ "title text!")
+
+## Images
+
+![Minion](https://octodex.github.com/images/minion.png)
+
+## The End!
