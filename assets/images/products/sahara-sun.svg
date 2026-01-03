@@ -1,0 +1,22 @@
+<svg width="500" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e5c7a0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5e6d3;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="desert-sun" cx="70%" cy="20%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  <rect width="500" height="600" fill="url(#grad8)"/>
+  <circle cx="350" cy="120" r="80" fill="url(#desert-sun)"/>
+  <circle cx="350" cy="120" r="40" fill="#fbbf24" opacity="0.7"/>
+  <text x="250" y="380" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" opacity="0.9">Sahara Sun</text>
+  <text x="250" y="420" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" opacity="0.8">Bikini</text>
+  <circle cx="220" cy="490" r="30" fill="none" stroke="white" stroke-width="2" opacity="0.6"/>
+  <circle cx="280" cy="490" r="30" fill="none" stroke="white" stroke-width="2" opacity="0.6"/>
+  <path d="M200,460 L240,460" stroke="white" stroke-width="2" opacity="0.5"/>
+  <path d="M260,460 L300,460" stroke="white" stroke-width="2" opacity="0.5"/>
+</svg>

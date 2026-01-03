@@ -1,0 +1,18 @@
+<svg width="500" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="500" height="600" fill="url(#grad4)"/>
+  <circle cx="150" cy="150" r="30" fill="#ec4899" opacity="0.6"/>
+  <circle cx="350" cy="200" r="25" fill="#f472b6" opacity="0.6"/>
+  <circle cx="120" cy="450" r="35" fill="#fbbf24" opacity="0.6"/>
+  <circle cx="380" cy="480" r="28" fill="#fb923c" opacity="0.6"/>
+  <path d="M200,180 Q200,160 220,160 Q240,160 240,180" fill="#fbbf24" opacity="0.7"/>
+  <ellipse cx="220" cy="200" rx="8" ry="15" fill="#dc2626" opacity="0.7"/>
+  <text x="250" y="320" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" opacity="0.9">Tropical Paradise</text>
+  <text x="250" y="355" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" opacity="0.8">Tankini</text>
+</svg>

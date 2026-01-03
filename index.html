@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveWear - Premium Swimwear Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-water text-cyan-600 text-3xl"></i>
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                        WaveWear
+                    </h1>
+                </div>
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-cyan-600 transition font-medium">Shop</a>
+                    <a href="#" class="text-gray-700 hover:text-cyan-600 transition font-medium">Collections</a>
+                    <a href="#" class="text-gray-700 hover:text-cyan-600 transition font-medium">About</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button id="cartBtn" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+                        <i class="fas fa-shopping-cart text-2xl text-gray-700"></i>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-cyan-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative py-20 px-4 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600 bg-clip-text text-transparent animate-fade-in">
+                Dive Into Summer
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
+                Premium swimwear designed for the modern beach lover
+            </p>
+            <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})"
+                    class="bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl hover:scale-105 transition transform">
+                Shop Collection
+            </button>
+        </div>
+        <div class="absolute inset-0 opacity-10">
+            <div class="wave-animation"></div>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <main id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h3 class="text-4xl font-bold text-center mb-12 text-gray-800">
+            Featured Collection
+        </h3>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold text-gray-800">Shopping Cart</h3>
+                <button id="closeCart" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div id="cartItems" class="flex-1 overflow-y-auto p-6">
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+
+            <div class="border-t p-6 space-y-4">
+                <div class="flex justify-between items-center text-xl font-bold">
+                    <span>Total:</span>
+                    <span id="cartTotal" class="text-cyan-600">$0.00</span>
+                </div>
+                <button id="checkoutBtn" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-4 rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-modal-in">
+            <div class="relative">
+                <button id="closeModal" class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition z-10">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <div id="modalContent" class="p-8">
+                    <!-- Modal content will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="relative">
+                <button id="closeCheckout" class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition z-10">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <div class="p-8">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800">Checkout</h3>
+
+                    <!-- Order Summary -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold mb-4">Order Summary</h4>
+                        <div id="checkoutItems" class="space-y-2 mb-4">
+                            <!-- Items will be listed here -->
+                        </div>
+                        <div class="border-t pt-4">
+                            <div class="flex justify-between text-2xl font-bold">
+                                <span>Total:</span>
+                                <span id="checkoutTotal" class="text-cyan-600">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Information -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold mb-4">Shipping Information</h4>
+                        <form id="shippingForm" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" id="firstName" placeholder="First Name" required
+                                       class="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                                <input type="text" id="lastName" placeholder="Last Name" required
+                                       class="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                            </div>
+                            <input type="email" id="email" placeholder="Email" required
+                                   class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                            <input type="text" id="address" placeholder="Address" required
+                                   class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                            <div class="grid grid-cols-3 gap-4">
+                                <input type="text" id="city" placeholder="City" required
+                                       class="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                                <input type="text" id="state" placeholder="State" required
+                                       class="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                                <input type="text" id="zip" placeholder="ZIP" required
+                                       class="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold mb-4">Payment Method</h4>
+                        <div class="space-y-4">
+                            <button id="stripePaymentBtn" class="w-full bg-indigo-600 text-white py-4 rounded-lg font-semibold hover:bg-indigo-700 transition flex items-center justify-center space-x-2">
+                                <i class="fab fa-stripe text-2xl"></i>
+                                <span>Pay with Stripe</span>
+                            </button>
+                            <button id="venmoPaymentBtn" class="w-full bg-[#008CFF] text-white py-4 rounded-lg font-semibold hover:bg-[#0077CC] transition flex items-center justify-center space-x-2">
+                                <i class="fas fa-mobile-alt text-2xl"></i>
+                                <span>Pay with Venmo</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stripe Payment Form (Hidden by default) -->
+                    <div id="stripePaymentForm" class="hidden">
+                        <div id="card-element" class="border border-gray-300 rounded-lg p-4 mb-4"></div>
+                        <div id="card-errors" class="text-red-600 text-sm mb-4"></div>
+                        <button id="submitStripePayment" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-4 rounded-lg font-semibold hover:shadow-xl transition">
+                            Complete Payment
+                        </button>
+                    </div>
+
+                    <!-- Venmo Payment Info (Hidden by default) -->
+                    <div id="venmoPaymentInfo" class="hidden">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-4">
+                            <p class="text-center mb-4 font-semibold">Send payment to:</p>
+                            <p class="text-center text-2xl font-bold text-[#008CFF] mb-4">@WaveWear-Shop</p>
+                            <p class="text-center text-sm text-gray-600 mb-4">Include your order number in the payment note</p>
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500">Order #: <span id="orderNumber" class="font-mono font-bold"></span></p>
+                            </div>
+                        </div>
+                        <button id="confirmVenmoPayment" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-4 rounded-lg font-semibold hover:shadow-xl transition">
+                            I've Sent the Payment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center shadow-2xl animate-modal-in">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-4xl text-green-600"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Order Placed Successfully!</h3>
+            <p class="text-gray-600 mb-6">Thank you for your purchase. You'll receive a confirmation email shortly.</p>
+            <button id="closeSuccess" class="bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-xl transition">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
