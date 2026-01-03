@@ -8,4 +8,17 @@
 
 ## Horizontal Rules
 
+
 ---
+
+## Emphasis
+
+**This is bold text**
+
+__This is hold text__
+
+*This is italic text*
+
+_This is italic text_
+
+--Strikethrough--
